@@ -6,39 +6,39 @@
 
   angular
     .module('app.api', [ 'restlet.sdk' ])
-    .factory('speciesSrvc', speciesSrvc)
+    .factory('stickerSrvc', stickerSrvc)
     .factory('sightingsSrvc', sightingsSrvc)
   ;
 
   //
   //
-  // speciesSrvc
+  // stickerSrvc
   //
   //
 
-  speciesSrvc.$inject = [
+  stickerSrvc.$inject = [
     '$q',
     '$timeout',
     '$sce',
     '$http',
-    'theurbanwild'
+    'parkelsewhere'
   ];
-  function speciesSrvc(
+  function stickerSrvc(
     $q,
     $timeout,
     $sce,
     $http,
-    theurbanwild
+    parkelsewhere
   ) {
     var service = {};
 
-    service.baseRestletURL = "https://urbanwilddbapi.herokuapp.com/";
+    service.baseRestletURL = "https://parkelsewheredb.herokuapp.com/";
 
-    theurbanwild.configureHTTP_BASICAuthentication( window.urbanwildcredentials.restlet.user, window.urbanwildcredentials.restlet.pass );
+    parkelsewhere.configureHTTP_BASICAuthentication( window.parkelsewherecredentials.restlet.user, window.parkelsewherecredentials.restlet.pass );
 
-    // methods as per https://trello.com/c/3sLYXMgq/64-species-service
+    // methods as per https://trello.com/c/3sLYXMgq/64-sticker-service
 
-    service.getSuggestedSpeciesNames = function getSuggestedSpeciesNames( searchTerms ) {
+    service.getSuggestedstickerNames = function getSuggestedstickerNames( searchTerms ) {
       var defer = $q.defer();
       var requestUrl = "";
       var cleanedSearchTerms = searchTerms.replace(/[^a-zA-Z0-9 :]/g, ''); // regex out all non alphanumeric characters
@@ -65,7 +65,7 @@
 	            });
               return( names /*.slice(0,100) */ ); /* re-enble a limiter! */
             }, function( error ) {
-              //console.log( "getSuggeestedSpeciesNames error: ", error );
+              //console.log( "getSuggeestedstickerNames error: ", error );
               defer.reject( error );
             } );
       } else {
@@ -73,45 +73,45 @@
       }
     };
 
-    service.getRegisteredSpecies = function getRegisteredSpecies( speciesName ) {
-      var endpointUri = service.baseRestletURL + "things/?name="+encodeURIComponent( speciesName );
+    service.getRegisteredsticker = function getRegisteredsticker( stickerName ) {
+      var endpointUri = service.baseRestletURL + "things/?name="+encodeURIComponent( stickerName );
       return($http({method:"GET",url:endpointUri}));
     };
 
-    service.getSpeciesFromId = function getSpeciesFromId( idString ) {
+    service.getstickerFromId = function getstickerFromId( idString ) {
       var endpointUri = service.baseRestletURL + "things/" + idString;
       return($http({method:"GET",url:endpointUri}));
     };
 
-    // inserts a species based on name. Should not create duplicate ites
-    service.registerSpecies = function registerSpecies( speciesName ) {
-      var registerSpeciesDoesNotExist = function registerSpeciesDoesNotExist( error ) {
-        return theurbanwild.postThings({
-          "name": speciesName
+    // inserts a sticker based on name. Should not create duplicate ites
+    service.registersticker = function registersticker( stickerName ) {
+      var registerstickerDoesNotExist = function registerstickerDoesNotExist( error ) {
+        return parkelsewhere.postThings({
+          "name": stickerName
         }).then(
-          function registerSpeciesFinal( data ) {
-            console.log("registerSpecies: created a new ", speciesName );
+          function registerstickerFinal( data ) {
+            console.log("registersticker: created a new ", stickerName );
             return data.data;
           },
-          function registerSpeciesFinalError( error ) {
-            console.log( "registerSpeciesFinalError: ", error );
+          function registerstickerFinalError( error ) {
+            console.log( "registerstickerFinalError: ", error );
             return error;
           }
         );
       };
 
       return(
-        service.getRegisteredSpecies( speciesName ).then(
-          function registerSpeciesButExists( data ) {
+        service.getRegisteredsticker( stickerName ).then(
+          function registerstickerButExists( data ) {
             if( data.data.length>0 ) {
-              console.log("registerSpecies: Species already exists! ", speciesName, data );
+              console.log("registersticker: sticker already exists! ", stickerName, data );
               return data.data.shift();
             } else {
               // not in the database
-              return registerSpeciesDoesNotExist( {} );
+              return registerstickerDoesNotExist( {} );
             }
           }
-          // also request failure // registerSpeciesDoesNotExist( speciesName )
+          // also request failure // registerstickerDoesNotExist( stickerName )
         )
       );
     };
@@ -129,17 +129,17 @@
     '$q',
     '$timeout',
     '$http',
-    'theurbanwild'
+    'parkelsewhere'
   ];
   function sightingsSrvc(
     $q,
     $timeout,
     $http,
-    theurbanwild
+    parkelsewhere
   ) {
     var service = {};
 
-    service.baseRestletURL = "https://urbanwilddbapi.herokuapp.com/";
+    service.baseRestletURL = "https://parkelsewheredb.herokuapp.com/";
 
     service.getSightings = function getSightings( postcode, dateFrom, dateTo, thingsReference ) {
       // sightings are 'events'
@@ -186,7 +186,7 @@
         event.thing = thingsReference;
       }
       //console.log( "sightingsSrvc.registerSighting registering ", event );
-      return theurbanwild.postEvents( event );
+      return parkelsewhere.postEvents( event );
     };
 
     // standardises a postcode for data storage

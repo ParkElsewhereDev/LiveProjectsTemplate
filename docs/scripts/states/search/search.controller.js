@@ -10,7 +10,7 @@
     '$scope',
     '$timeout',
     'locationsSrvc',
-    'speciesSrvc',
+    'stickerSrvc',
     'sightingsSrvc',
     '$state',
     '$stateParams',
@@ -25,7 +25,7 @@
     $scope,
     $timeout,
     locationsSrvc,
-    speciesSrvc,
+    stickerSrvc,
     sightingsSrvc,
     $state,
     $stateParams,
@@ -156,10 +156,10 @@
         .forEach(function(e,index){
           var marker;
           // turn the thing-ID into a string
-          speciesSrvc.getSpeciesFromId(e.thing).then(
-            function turnedIdIntoASpecies( payload ){
+          stickerSrvc.getstickerFromId(e.thing).then(
+            function turnedIdIntoAsticker( payload ){
               marker = L.marker(new L.LatLng(e.lat, e.lon),{
-                species: payload.data.name,
+                sticker: payload.data.name,
                 date: new Date(e.date).toLocaleDateString(),
                 time: new Date(e.date).toLocaleTimeString(),
                 location: e.postcode
@@ -167,14 +167,14 @@
               marker.bindPopup( payload.data.name+"<br>"+new Date(e.date).toLocaleString()+"<br>"+e.postcode );
               clusterMarkers.addLayer( marker );
             },
-            function errorGettingSpeciesFromID( error ) {
+            function errorGettingstickerFromID( error ) {
               marker = L.marker(new L.LatLng(e.lat, e.lon),{
-                species: e.thing+"(problem with Species service)",
+                sticker: e.thing+"(problem with sticker service)",
                 date: new Date(e.date).toLocaleDateString(),
                 time: new Date(e.date).toLocaleTimeString(),
                 location: e.postcode
               });
-              console.log("errorGettingSpeciesFromID, ", error);
+              console.log("errorGettingstickerFromID, ", error);
               marker.bindPopup( e );
               clusterMarkers.addLayer( marker );
             }
@@ -187,9 +187,9 @@
         var popup = L.popup()
             .setLatLng(a.layer.getLatLng())
             .setContent(
-              "<table class='species-cluster'><thead><tr><th class='first'>Species</th><th>Date</th><th>Time</th><th>Location</th></tr></thead><tbody>"+
+              "<table class='sticker-cluster'><thead><tr><th class='first'>sticker</th><th>Date</th><th>Time</th><th>Location</th></tr></thead><tbody>"+
                 (a.layer.getAllChildMarkers().reduce(function(flat,toFlatten){
-                  return( flat+"<tr>"+"<td class='name'>"+toFlatten.options.species+"</td>"+"<td>"+[ toFlatten.options.date, toFlatten.options.time, toFlatten.options.location].join("</td><td>")+"</td></tr>" );
+                  return( flat+"<tr>"+"<td class='name'>"+toFlatten.options.sticker+"</td>"+"<td>"+[ toFlatten.options.date, toFlatten.options.time, toFlatten.options.location].join("</td><td>")+"</td></tr>" );
                 },""))+
                 "</tbody></table>"
             )

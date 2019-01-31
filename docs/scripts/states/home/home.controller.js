@@ -10,7 +10,7 @@
     '$timeout',
     '$q',
     'locationsSrvc',
-    'speciesSrvc',
+    'stickerSrvc',
     'sightingsSrvc',
     '$state',
     'toaster'
@@ -21,7 +21,7 @@
     $timeout,
     $q,
     locationsSrvc,
-    speciesSrvc,
+    stickerSrvc,
     sightingsSrvc,
     $state,
     toaster
@@ -32,11 +32,11 @@
 
     vm.homeForm={
       postcode:"",
-      species:""
+      sticker:""
     };
 
     vm.postcode="";
-    vm.species="";
+    vm.sticker="";
 
     vm.logItButtonDisabled=true;
     vm.searchItButtonDisabled=true;
@@ -77,7 +77,7 @@
     };
 
     vm.handleLogIt = function handleLogIt() {
-      //window.alert("Log It\npostcode: "+vm.postcode+"\nspecies:"+vm.species);
+      //window.alert("Log It\npostcode: "+vm.postcode+"\nsticker:"+vm.sticker);
       // has to perform https://trello.com/c/QAvEzIPT/57-logging-preparation-process
       // 1. prep the living thing
       // 2. invoke logging process
@@ -91,15 +91,15 @@
       //    1. postcode
       //    2. living thing reference
       //    3. date
-      var livingThing = speciesSrvc.registerSpecies( vm.species ).then( // 1.
-        function registeredSpeciesOk( confirmedLivingThing ) {
+      var livingThing = stickerSrvc.registersticker( vm.sticker ).then( // 1.
+        function registeredstickerOk( confirmedLivingThing ) {
           console.log(confirmedLivingThing);
           sightingsSrvc.registerSighting( // 2.1 -> 2.4, 3
             vm.postcode,
             vm.location,
             confirmedLivingThing.id
           ).then(
-            function registeredSpeciesOkAndPostedSightingOk(success){ // 5
+            function registeredstickerOkAndPostedSightingOk(success){ // 5
               var now = new Date();
               var dateFromEpoch = now.getTime();
               /*
@@ -113,20 +113,20 @@
                                           confirmedLivingThing.id ).then(
                                             function getSightingsOk( payload ) {
                                               // @TODO
-                                              toaster.pop('success', "Sighting Logged", 'Your sighting of a <b>'+vm.species+'</b> was successful.',5000, 'trustedHtml', function(toaster) {
+                                              toaster.pop('success', "Sighting Logged", 'Your sighting of a <b>'+vm.sticker+'</b> was successful.',5000, 'trustedHtml', function(toaster) {
                                                 //alert("click!");
                                                 return true;
                                               } );                                            },
                                             function getSightingsError( error ) {
                                               // @TODO
-                                              toaster.pop('error', "Error: Logging Error", 'There was a problem finding similar species recordings; please check <ul><li>You have provided all required information</li><li>You are connected to the internet</li><li>You are not stuck in a captive portal page</li></ul>',0, 'trustedHtml', function(toaster) {
+                                              toaster.pop('error', "Error: Logging Error", 'There was a problem finding similar sticker recordings; please check <ul><li>You have provided all required information</li><li>You are connected to the internet</li><li>You are not stuck in a captive portal page</li></ul>',0, 'trustedHtml', function(toaster) {
                                                 return true;
                                               } );
 
                                             }
                                           );
             },
-            function registeredSpeciesOkButPostedSightingFail(error){ // 4
+            function registeredstickerOkButPostedSightingFail(error){ // 4
               toaster.pop('error', "Error: Logging Error", 'There was a problem uploading your sighting; please check <ul><li>You have provided all required information</li><li>You are connected to the internet</li><li>You are not stuck in a captive portal page</li></ul>',0, 'trustedHtml', function(toaster) {
                 //alert("click!");
                 return true;
@@ -134,8 +134,8 @@
            }
           );
         },
-        function registeredSpeciesFail( error ) {
-          console.log("registeredSpeciesFail: ",error);
+        function registeredstickerFail( error ) {
+          console.log("registeredstickerFail: ",error);
           toaster.pop('error', "Error: Logging Error", 'There was a problem uploading your logging; please check <ul><li>You have provided all required information</li><li>You are connected to the internet</li><li>You are not stuck in a captive portal page</li></ul>',0, 'trustedHtml', function(toaster) {
             //alert("click!");
             return true;
@@ -144,13 +144,13 @@
       );
     };
 
-    vm.getSpecies = function getSpecies(partial) {
+    vm.getsticker = function getsticker(partial) {
       var defer = $q.defer();
-      speciesSrvc.getSuggestedSpeciesNames( partial ).then(
-        function gotSpeciesNames( results ) {
+      stickerSrvc.getSuggestedstickerNames( partial ).then(
+        function gotstickerNames( results ) {
           defer.resolve(results);
         },
-        function gotSpeciesNamesError( error ) {
+        function gotstickerNamesError( error ) {
           console.log( "error, somehow" );
           defer.reject( error );
         }
@@ -193,7 +193,7 @@
         vm.isMyLocation = false;
       }
 
-      if( ((vm.homeForm.species.$invalid===true)) && (vm.isMyLocation===true) ) {
+      if( ((vm.homeForm.sticker.$invalid===true)) && (vm.isMyLocation===true) ) {
         vm.logItButtonDisabled=false;
       } else {
         vm.logItButtonDisabled=true;

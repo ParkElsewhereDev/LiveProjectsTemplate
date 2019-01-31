@@ -100,63 +100,63 @@ div.buttons {
 		xmargin: 0 20px;
 	}
 
-table.species-cluster {
+table.sticker-cluster {
 
 }
 
-table.species-cluster>thead>tr, table.species-cluster>tbody>tr {
+table.sticker-cluster>thead>tr, table.sticker-cluster>tbody>tr {
 	width:100%;
 	display:block;
 }
-table.species-cluster>thead>tr {
+table.sticker-cluster>thead>tr {
   border-bottom: 1px solid black;
   padding: 0 0 .5em 0;
   font-weight: 900;
   color: #555;
 }
-table.species-cluster>thead>tr>th {
+table.sticker-cluster>thead>tr>th {
   padding-left: .25em;
   width: 25%;
 }
-table.species-cluster>thead>tr>td.first {
+table.sticker-cluster>thead>tr>td.first {
   padding-left: 0;
 }
-table.species-cluster>tbody, table.species-cluster>thead {
+table.sticker-cluster>tbody, table.sticker-cluster>thead {
 	display: block;
 	width: 100% !important;
 }
-table.species-cluster>tbody>tr, table.species-cluster>thead>tr {
+table.sticker-cluster>tbody>tr, table.sticker-cluster>thead>tr {
 	width: 100%;
 	display: inline-block;	
 }
 	
-table.species-cluster>tbody {
+table.sticker-cluster>tbody {
 	height: 100px !important;
 	overflow-y: auto;
 }
-table.species-cluster>tbody>tr {
+table.sticker-cluster>tbody>tr {
   margin-bottom:.15em;
 }
-table.species-cluster>tbody>tr:nth-child(even) {
+table.sticker-cluster>tbody>tr:nth-child(even) {
   background-color: #eee;
 }
-table.species-cluster>tbody>tr>td {
+table.sticker-cluster>tbody>tr>td {
   margin: 0 0 .5em 0;
   color: #444;
   padding-left:.5em;
   white-space: nowrap;
 }
-table.species-cluster>tbody>tr>td.name {
+table.sticker-cluster>tbody>tr>td.name {
   font-weight: 700;
   font-style: italic;
   padding-left: 0;
   color: black;
   white-space: normal;
 }
-table.species-cluster>tbody>tr>td:nth-child(1), table.species-cluster>thead>tr>th:nth-child(1) { min-width: 130px; }
-table.species-cluster>tbody>tr>td:nth-child(2), table.species-cluster>thead>tr>th:nth-child(2) { min-width: 70px; }
-table.species-cluster>tbody>tr>td:nth-child(3), table.species-cluster>thead>tr>th:nth-child(3) { min-width: 50px; }
-table.species-cluster>tbody>tr>td:nth-child(4), table.species-cluster>thead>tr>th:nth-child(4) { width: 50px; }
+table.sticker-cluster>tbody>tr>td:nth-child(1), table.sticker-cluster>thead>tr>th:nth-child(1) { min-width: 130px; }
+table.sticker-cluster>tbody>tr>td:nth-child(2), table.sticker-cluster>thead>tr>th:nth-child(2) { min-width: 70px; }
+table.sticker-cluster>tbody>tr>td:nth-child(3), table.sticker-cluster>thead>tr>th:nth-child(3) { min-width: 50px; }
+table.sticker-cluster>tbody>tr>td:nth-child(4), table.sticker-cluster>thead>tr>th:nth-child(4) { width: 50px; }
 
 div#date-selectors {
   z-index:5;

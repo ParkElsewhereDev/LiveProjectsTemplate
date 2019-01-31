@@ -1,7 +1,7 @@
 ## restlet Generated SDK
 
 #### Input source
-__theurbanwild - version: 1.4.0__
+__parkelsewhere - version: 1.4.0__
 
 
 #### Structure
@@ -98,8 +98,8 @@ or `QUERY`) using the provided name and value
 
 ###### User-specific authentication
 
-####### theurbanwild
+####### parkelsewhere
 
-The list of user-specific authentication mechanism for theurbanwild is the following:
+The list of user-specific authentication mechanism for parkelsewhere is the following:
 
 * `configureHTTP_BASICAuthentication`

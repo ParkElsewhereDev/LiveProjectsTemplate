@@ -4,11 +4,11 @@
   angular.module('restlet.sdk', []);
 
   angular.module('restlet.sdk')
-    .service('theurbanwild', ['$http', theurbanwild]);
+    .service('parkelsewhere', ['$http', parkelsewhere]);
 
-  function theurbanwild ($http) {
+  function parkelsewhere ($http) {
 
-    var endpoint = 'https://urbanwilddbapi.herokuapp.com';
+    var endpoint = 'https://parkelsewheredb.herokuapp.com/';
     var globalSecurity = {};
     var securityConfigurations = {};
 
