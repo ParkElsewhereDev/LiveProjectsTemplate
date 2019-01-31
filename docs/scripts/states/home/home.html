@@ -1,13 +1,12 @@
 <uiview>
   <div id="header" class="bar-dark">
     <button class="button button-icon icon ion-navicon" menu-toggle="left" ng-click="vm.goAbout()">❝</button>
-    <h1 class="title">Wild Logging</h1>
+    <h1 class="title">Park Elsewhere</h1>
     <button class="button button-icon icon ion-arrow-right-c" ng-click="vm.goSearch()">→</button>
   </div>
   <div class="home-page">
   <ng-form name="vm.homeForm">
     <div class="form-group">
-      <span ng-show="vm.homeForm.sticker.$valid" class="confirmation">✓</span>
       <label for="postcode">Where is the sticker?</label>
       <input type="text"
         autocomplete="off"
