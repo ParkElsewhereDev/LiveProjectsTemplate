@@ -52,8 +52,8 @@
      }
      ]
      */
-    this.getEvents = function (config) {
-      var url = endpoint + '/events/';
+    this.getIncidents = function (config) {
+      var url = endpoint + '/incidents/';
 
       return send('GET', url, addSecurityConfiguration(config, 'HTTP_BASIC'));
     };
@@ -86,8 +86,8 @@
        "thing" : "sample thing"
      }
      */
-    this.postEvents = function (body, config) {
-      var url = endpoint + '/events/';
+    this.postIncidents = function (body, config) {
+      var url = endpoint + '/incidents/';
 
       return send('POST', url, addSecurityConfiguration(config, 'HTTP_BASIC'), body);
     };
@@ -95,7 +95,7 @@
     /**
      * Loads a Event
      *
-     * @param eventid - REQUIRED - Identifier of the Event
+     * @param incidentid - REQUIRED - Identifier of the incident
      * @param config - Object describing the request to be made and how it should be processed. The object has following properties:
      * @param config.params - Map of strings or objects which will be serialized with the paramSerializer and appended as query parameters.
      * @param config.headers - Map of strings or functions which return strings representing HTTP headers to send to the server.
@@ -114,10 +114,10 @@
        "thing" : "sample thing"
      }
      */
-    this.getEventsEventid = function (eventid, config) {
-      checkPathVariables(eventid, 'eventid');
+    this.getIncidentsIncidentid = function (incidentid, config) {
+      checkPathVariables(incidentid, 'incidentid');
 
-      var url = endpoint + '/events/' + eventid + '';
+      var url = endpoint + '/incidents/' + incidentid + '';
 
       return send('GET', url, addSecurityConfiguration(config, 'HTTP_BASIC'));
     };
@@ -125,7 +125,7 @@
     /**
      * Stores a Event
      *
-     * @param eventid - REQUIRED - Identifier of the Event
+     * @param incidentid - REQUIRED - Identifier of the Event
      * @param body - the payload; is of type Event; has the following structure:
      {
        "date" : 1511395200000,
@@ -153,10 +153,10 @@
        "thing" : "sample thing"
      }
      */
-    this.putEventsEventid = function (eventid, body, config) {
-      checkPathVariables(eventid, 'eventid');
+    this.putIncidentsIncidentid = function (incidentid, body, config) {
+      checkPathVariables(incidentid, 'incidentid');
 
-      var url = endpoint + '/events/' + eventid + '';
+      var url = endpoint + '/incidents/' + incidentid + '';
 
       return send('PUT', url, addSecurityConfiguration(config, 'HTTP_BASIC'), body);
     };
@@ -164,7 +164,7 @@
     /**
      * Deletes a Event
      *
-     * @param eventid - REQUIRED - Identifier of the Event
+     * @param incidentid - REQUIRED - Identifier of the Event
      * @param config - Object describing the request to be made and how it should be processed. The object has following properties:
      * @param config.params - Map of strings or objects which will be serialized with the paramSerializer and appended as query parameters.
      * @param config.headers - Map of strings or functions which return strings representing HTTP headers to send to the server.
@@ -174,10 +174,10 @@
      * @returns {HttpPromise} - a promise resolved with the response from the server.
      * In case of success (status in the 2XX range)
      */
-    this.deleteEventsEventid = function (eventid, config) {
-      checkPathVariables(eventid, 'eventid');
+    this.deleteIncidentsIncidentid = function (incidentid, config) {
+      checkPathVariables(incidentid, 'incidentid');
 
-      var url = endpoint + '/events/' + eventid + '';
+      var url = endpoint + '/incidents/' + incidentid + '';
 
       return send('DELETE', url, addSecurityConfiguration(config, 'HTTP_BASIC'));
     };
@@ -206,8 +206,8 @@
      }
      ]
      */
-    this.getThings = function (config) {
-      var url = endpoint + '/things/';
+    this.getStickers = function (config) {
+      var url = endpoint + '/stickers/';
 
       return send('GET', url, addSecurityConfiguration(config, 'HTTP_BASIC'));
     };
@@ -232,8 +232,8 @@
        "name" : "Jay"
      }
      */
-    this.postThings = function (body, config) {
-      var url = endpoint + '/things/';
+    this.postStickers = function (body, config) {
+      var url = endpoint + '/stickers/';
 
       return send('POST', url, addSecurityConfiguration(config, 'HTTP_BASIC'), body);
     };
@@ -241,7 +241,7 @@
     /**
      * Loads a Thing
      *
-     * @param thingid - REQUIRED - Identifier of the Thing
+     * @param stickerid - REQUIRED - Identifier of the Thing
      * @param config - Object describing the request to be made and how it should be processed. The object has following properties:
      * @param config.params - Map of strings or objects which will be serialized with the paramSerializer and appended as query parameters.
      * @param config.headers - Map of strings or functions which return strings representing HTTP headers to send to the server.
@@ -256,10 +256,10 @@
        "name" : "Jay"
      }
      */
-    this.getThingsThingid = function (thingid, config) {
-      checkPathVariables(thingid, 'thingid');
+    this.getStickersStickerid = function (stickerid, config) {
+      checkPathVariables(stickerid, 'stickerid');
 
-      var url = endpoint + '/things/' + thingid + '';
+      var url = endpoint + '/stickers/' + stickerid + '';
 
       return send('GET', url, addSecurityConfiguration(config, 'HTTP_BASIC'));
     };
@@ -267,7 +267,7 @@
     /**
      * Stores a Thing
      *
-     * @param thingid - REQUIRED - Identifier of the Thing
+     * @param stickerid - REQUIRED - Identifier of the Thing
      * @param body - the payload; is of type Thing; has the following structure:
      {
        "id" : "sample id",
@@ -287,10 +287,10 @@
        "name" : "Jay"
      }
      */
-    this.putThingsThingid = function (thingid, body, config) {
-      checkPathVariables(thingid, 'thingid');
+    this.putStickersStickerid = function (stickerid, body, config) {
+      checkPathVariables(stickerid, 'stickerid');
 
-      var url = endpoint + '/things/' + thingid + '';
+      var url = endpoint + '/stickers/' + stickerid + '';
 
       return send('PUT', url, addSecurityConfiguration(config, 'HTTP_BASIC'), body);
     };
@@ -298,7 +298,7 @@
     /**
      * Deletes a Thing
      *
-     * @param thingid - REQUIRED - Identifier of the Thing
+     * @param stickerid - REQUIRED - Identifier of the Thing
      * @param config - Object describing the request to be made and how it should be processed. The object has following properties:
      * @param config.params - Map of strings or objects which will be serialized with the paramSerializer and appended as query parameters.
      * @param config.headers - Map of strings or functions which return strings representing HTTP headers to send to the server.
@@ -308,10 +308,10 @@
      * @returns {HttpPromise} - a promise resolved with the response from the server.
      * In case of success (status in the 2XX range)
      */
-    this.deleteThingsThingid = function (thingid, config) {
-      checkPathVariables(thingid, 'thingid');
+    this.deleteStickersStickerid = function (stickerid, config) {
+      checkPathVariables(stickerid, 'stickerid');
 
-      var url = endpoint + '/things/' + thingid + '';
+      var url = endpoint + '/stickers/' + stickerid + '';
 
       return send('DELETE', url, addSecurityConfiguration(config, 'HTTP_BASIC'));
     };
