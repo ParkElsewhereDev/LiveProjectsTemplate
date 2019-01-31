@@ -1,0 +1,84 @@
+<uiview>
+    <div id="header" class="bar-dark">
+      <button class="button button-icon icon ion-arrow-left-c" ng-click="vm.goHome()">←</button>
+      <h1 class="title">Wild Logs</h1>
+      <button class="button button-icon" side="right" ng-show="vm.busy">
+        <div class="loading-spinner" >
+          <div class="sk-fading-circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+          </div>
+        </div>
+      </button>
+    </div>
+
+
+    <div
+      id="mymap"
+      style="height: 100%;">
+    </div>
+
+
+    <div id="footer" class="bar-dark">
+      <div
+        id="date-selectors"
+      >
+        <div class="date-block from">
+        <label for="fromDate">from</label>
+        <span class="input-group">
+          <input type="date" class="form-control"
+            name="fromDate"
+            ng-change="vm.fromDateChange()"
+            uib-datepicker-popup="{{format}}"
+            datepicker-append-to-body="true"
+            show-button-bar="false"
+            popup-placement="auto top-right"
+            ng-model="vm.fromDate"
+            is-open="vm.fromDateOpened"
+            close-on-date-selection="true"
+            datepicker-options="dateOptions"
+            ng-required="false"
+            close-text="Close"
+            alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="vm.handleFromDateOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </span>
+        </div>
+        <div class="date-block to">
+        <label for="toDate">to</label>
+        <span class="input-group">
+          <input type="date" class="form-control"
+            name="toDate"
+            ng-change="vm.toDateChange()"
+            uib-datepicker-popup="{{format}}"
+            datepicker-append-to-body="true"
+            show-button-bar="false"
+            popup-placement="auto top-right"
+            ng-model="vm.toDate"
+            is-open="vm.toDateOpened"
+            close-on-date-selection="true"
+            datepicker-options="dateOptions"
+            ng-required="false"
+            close-text="Close"
+            alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="vm.handleToDateOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </span>
+        </div>
+      </div>
+
+    </div>
+</uiview>
+

@@ -1,6 +1,79 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:p="http://www.evolus.vn/Namespace/Pencil" xmlns:html="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>wireframe</title><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="translucent black" /><link rel="apple-touch-icon-precomposed" href="Resources/images/icon_57x57.png" /><link rel="apple-touch-icon-precomposed" sizes="72x72" href="Resources/images/icon_72x72.png" /><link rel="apple-touch-icon-precomposed" sizes="114x114" href="Resources/images/icon_114x114.png" /><link rel="apple-touch-icon-precomposed" sizes="144x144" href="Resources/images/icon_144x144.png" /><link rel="icon" type="image/png" href="Resources/images/favicon.png" /><link rel="stylesheet" type="text/css" href="Resources/style.css" /><script type="text/javascript" src="Resources/lib.js">
-                    //
-                </script></head><body><div class="page" id="stickerdownload"><img src="pages/stickerdownload.png" width="396" height="743" usemap="#map_stickerdownload" /><map name="map_stickerdownload"><area shape="rect" coords="113,438,295,482" href="#/page/start" title="start" /></map></div><div class="page" id="searchmap"><img src="pages/searchmap.png" width="396" height="743" usemap="#map_searchmap" /><map name="map_searchmap"><area shape="rect" coords="33,81,87,107" href="#/page/menu" title="menu" /></map></div><div class="page" id="menu"><img src="pages/menu.png" width="396" height="743" usemap="#map_menu" /><map name="map_menu"><area shape="rect" coords="100,447,300,509" href="#/page/apologieswebpage" title="apologies_webpage" /><area shape="rect" coords="100,246,300,308" href="#/page/searchmap" title="searchmap" /><area shape="rect" coords="100,351,301,413" href="#/page/stickerscan" title="stickerscan" /></map></div><div class="page" id="stickerregistered"><img src="pages/stickerregistered.png" width="396" height="743" usemap="#map_stickerregistered" /><map name="map_stickerregistered"><area shape="rect" coords="151,329,264,363" href="#/page/start" title="start" /></map></div><div class="page" id="start"><img src="pages/start.png" width="396" height="743" usemap="#map_start" /><map name="map_start"><area shape="rect" coords="158,463,248,489" href="#/page/stickerdownload" title="stickerdownload" /><area shape="rect" coords="158,387,248,412" href="#/page/apologieswebpage" title="apologies_webpage" /><area shape="rect" coords="158,310,248,336" href="#/page/menu" title="menu" /></map></div><div class="page" id="apologygiven"><img src="pages/apologygiven.png" width="396" height="743" usemap="#map_apologygiven" /><map name="map_apologygiven"><area shape="rect" coords="153,325,260,364" href="#/page/start" title="start" /></map></div><div class="page" id="stickerscan"><img src="pages/stickerscan.png" width="396" height="743" usemap="#map_stickerscan" /><map name="map_stickerscan"><area shape="rect" coords="145,294,256,336" href="#/page/licensescan" title="license_scan" /></map></div><div class="page" id="scansuccessful"><img src="pages/scansuccessful.png" width="396" height="743" usemap="#map_scansuccessful" /><map name="map_scansuccessful"><area shape="rect" coords="151,366,254,399" href="#/page/stickerregistered" title="sticker_registered" /></map></div><div class="page" id="apologieswebpage"><img src="pages/apologieswebpage.png" width="396" height="743" usemap="#map_apologieswebpage" /><map name="map_apologieswebpage"><area shape="rect" coords="260,321,364,346" href="#/page/apologyno" title="apology_no" /><area shape="rect" coords="156,320,246,346" href="#/page/start" title="start" /><area shape="rect" coords="48,321,138,346" href="#/page/apologygiven_1" title="apology_given" /></map></div><div class="page" id="apologyno"><img src="pages/apologyno.png" width="396" height="743" usemap="#map_apologyno" /><map name="map_apologyno"><area shape="rect" coords="135,298,265,331" href="#/page/start" title="start" /></map></div><div class="page" id="scanfailed"><img src="pages/scanfailed.png" width="396" height="743" usemap="#map_scanfailed" /><map name="map_scanfailed"><area shape="rect" coords="141,295,259,340" href="#/page/stickerscan" title="stickerscan" /></map></div><div class="page" id="apologygiven_1"><img src="pages/apologygiven_1.png" width="396" height="743" usemap="#map_apologygiven_1" /><map name="map_apologygiven_1"><area shape="rect" coords="135,297,265,332" href="#/page/start" title="start" /></map></div><div class="page" id="licensescan"><img src="pages/licensescan.png" width="396" height="743" usemap="#map_licensescan" /><map name="map_licensescan"><area shape="rect" coords="145,294,256,336" href="#/page/scansuccessful" title="scansuccessful" /></map></div><script type="text/javascript" src="Resources/main.js">
-                    //
-                </script></body></html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>The Urban Wild</title>
+
+    <link rel="manifest" href="manifest.json">
+
+
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <!-- Leaflet! -->
+    <link rel="stylesheet" href="lib/leaflet/dist/leaflet.css"/>
+    <script src="lib/leaflet/dist/leaflet.js"></script>
+
+    <!-- Leaflet MarkerCluster! -->
+    <link rel="stylesheet" href="lib/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="lib/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <script src="lib/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+
+    <!-- angularjs js -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-animate.min.js"></script>
+    <script src="lib/angular/i18n/angular-locale_en-gb.js"></script>
+    <script src="lib/angular-ui-router/angular-ui-router.js"></script>
+    <script src="lib/angular/angular-santize.js"></script>
+    <script src="lib/ng-datalist/ng-datalist.js"></script>
+
+    <!-- your app's js -->
+    <script src="scripts/app.js"></script>
+
+    <!-- bootstrap -->
+    <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <link href="lib/bootstrap/ui-bootstrap-2.5.0-csp.css" rel="stylesheet"/ >
+    <script src="lib/bootstrap/ui-bootstrap-tpls-2.5.0.min.js" ></script>
+
+    <!-- angularjs-toaster -->
+    <link href="lib/angularjs-toaster/toaster.min.css" rel="stylesheet"/>
+    <script src="lib/angularjs-toaster/toaster.min.js"></script>
+
+    <!-- directives -->
+    <script src="scripts/directives/connectionError.directive.js"></script>
+
+    <!-- modules and services -->
+    <script src="scripts/services/locations.service.js"></script>
+    <script src="scripts/services/api.service.js"></script>
+
+    <script src="scripts/states/home/home.module.js"></script>
+    <script src="scripts/states/home/home.controller.js"></script>
+
+    <script src="scripts/states/search/search.module.js"></script>
+    <script src="scripts/states/search/search.controller.js"></script>
+
+    <script src="scripts/states/about/about.module.js"></script>
+    <script src="scripts/states/about/about.controller.js"></script>
+
+    <!-- restlet -->
+    <script src="lib/theurbanwild.restlet/module.js"></script>
+
+    <!-- angular-ui-notification -->
+    <script src="lib/angular-ui-notification/angular-ui-notification.js"></script>
+    <link href="lib/angular-ui-notification/angular-ui-notification.css"/>
+
+    <!-- credentials hack -->
+    <script src="scripts/credentials.js"></script>
+
+  </head>
+  <body ng-app="starter">
+    <connectionerror show="vm.errorModalShow">
+      modal connection error window
+      {{vm.errorModalText}}
+    </connectionerror>
+
+    <toaster-container></toaster-container>
+
+    <ui-view></ui-view>
+  </body>
+</html>
