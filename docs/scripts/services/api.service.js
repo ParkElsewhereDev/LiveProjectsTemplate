@@ -194,9 +194,7 @@
     var sanitisePostcode = function sanitisePostcode( postcode ) {
       return postcode;
     };
-
     //
     return service;
   }
-
 })();
