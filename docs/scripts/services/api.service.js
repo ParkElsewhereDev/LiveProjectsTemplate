@@ -171,7 +171,7 @@
       return($http({method:"GET",url:endpointUri}));
     };
 
-    service.registerSighting = function registerSighting( postcode, location, stickersReference ) {
+    service.registerIncident = function registerIncident( postcode, location, stickersReference ) {
       var incident = {
         incident: (new Date).getTime()
       };
@@ -185,7 +185,7 @@
       if( angular.isDefined( stickersReference ) ) {
         incident.sticker = stickersReference;
       }
-      //console.log( "incidentsSrvc.registerSighting registering ", incident );
+      //console.log( "incidentsSrvc.registerIncident registering ", incident );
       return parkelsewhere.postIncidents( incident );
     };
 

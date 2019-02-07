@@ -11,7 +11,7 @@
     '$q',
     'locationsSrvc',
     'stickerSrvc',
-    'sightingsSrvc',
+    'incidentsSrvc',
     '$state',
     'toaster'
   ];
@@ -22,7 +22,7 @@
     $q,
     locationsSrvc,
     stickerSrvc,
-    sightingsSrvc,
+    incidentsSrvc,
     $state,
     toaster
   ) {
@@ -94,7 +94,7 @@
       var livingThing = stickerSrvc.registersticker( vm.sticker ).then( // 1.
         function registeredstickerOk( confirmedLivingThing ) {
           console.log(confirmedLivingThing);
-          sightingsSrvc.registerSighting( // 2.1 -> 2.4, 3
+          incidentsSrvc.registerSighting( // 2.1 -> 2.4, 3
             vm.postcode,
             vm.location,
             confirmedLivingThing.id
@@ -107,7 +107,7 @@
               var dateTo = new Date();
               dateTo.setHours(23,59,59,9999) */
               var dateToEpoch = dateFromEpoch - ( 24*60*60 );
-              sightingsSrvc.getSightings( vm.postcode,
+              incidentsSrvc.getSightings( vm.postcode,
                                           dateFromEpoch,
                                           dateToEpoch,
                                           confirmedLivingThing.id ).then(

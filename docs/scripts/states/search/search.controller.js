@@ -11,7 +11,7 @@
     '$timeout',
     'locationsSrvc',
     'stickerSrvc',
-    'sightingsSrvc',
+    'incidentsSrvc',
     '$state',
     '$stateParams',
     'toaster',
@@ -26,7 +26,7 @@
     $timeout,
     locationsSrvc,
     stickerSrvc,
-    sightingsSrvc,
+    incidentsSrvc,
     $state,
     $stateParams,
     toaster,
@@ -116,7 +116,7 @@
       var fromEpoch = vm.fromDate ? vm.fromDate.getTime() : undefined;
       var toEpoch = vm.toDate ? vm.toDate.getTime() : undefined;
       //console.log( "getSightingsForPostcode " + postcode, fromEpoch, toEpoch );
-      sightingsSrvc.getSightings( postcode ).then(
+      incidentsSrvc.getSightings( postcode ).then(
         function gotSightingsForPostcodeOkay( data ) {
           removeAllMarkers();
           gotSightingsForPostcode( data, fromEpoch, toEpoch );
@@ -242,7 +242,7 @@
           var sightings = [];
           for(var i in postcodes) {
             //console.log(" queueing up for "+postcodes[i]);
-            sightings.push( sightingsSrvc.getSightings( postcodes[i] )
+            sightings.push( incidentsSrvc.getSightings( postcodes[i] )
                             .then(
                               function gotBulkSightings(result){
                                 gotSightingsForPostcode(result, fromEpoch, toEpoch );
