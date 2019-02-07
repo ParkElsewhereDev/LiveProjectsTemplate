@@ -128,13 +128,13 @@
 /*    '$ionicPlatform', */
     '$q',
     '$timeout',
-    '$https',
+    '$http',
     'parkelsewhere'
   ];
   function incidentsSrvc(
     $q,
     $timeout,
-    $https,
+    $http,
     parkelsewhere
   ) {
     var service = {};
@@ -168,7 +168,7 @@
 
       //console.log( "incidentsSrvc.getIncidents: getting  "+endpointUri );
 
-      return($https({method:"GET",url:endpointUri}));
+      return($http({method:"GET",url:endpointUri}));
     };
 
     service.registerSighting = function registerSighting( postcode, location, stickersReference ) {
