@@ -20,14 +20,14 @@
     '$q',
     '$timeout',
     '$sce',
-    '$http',
+    '$https',
     'parkelsewhere'
   ];
   function stickerSrvc(
     $q,
     $timeout,
     $sce,
-    $http,
+    $https,
     parkelsewhere
   ) {
     var service = {};
@@ -74,19 +74,19 @@
     };
 
     service.getRegisteredsticker = function getRegisteredsticker( stickerName ) {
-      var endpointUri = service.baseRestletURL + "things/?name="+encodeURIComponent( stickerName );
-      return($http({method:"GET",url:endpointUri}));
+      var endpointUri = service.baseRestletURL + "stickers/?name="+encodeURIComponent( stickerName );
+      return($https({method:"GET",url:endpointUri}));
     };
 
     service.getstickerFromId = function getstickerFromId( idString ) {
-      var endpointUri = service.baseRestletURL + "things/" + idString;
-      return($http({method:"GET",url:endpointUri}));
+      var endpointUri = service.baseRestletURL + "stickers/" + idString;
+      return($https({method:"GET",url:endpointUri}));
     };
 
     // inserts a sticker based on name. Should not create duplicate ites
     service.registersticker = function registersticker( stickerName ) {
       var registerstickerDoesNotExist = function registerstickerDoesNotExist( error ) {
-        return parkelsewhere.postThings({
+        return parkelsewhere.poststickers({
           "name": stickerName
         }).then(
           function registerstickerFinal( data ) {
@@ -128,20 +128,20 @@
 /*    '$ionicPlatform', */
     '$q',
     '$timeout',
-    '$http',
+    '$https',
     'parkelsewhere'
   ];
   function sightingsSrvc(
     $q,
     $timeout,
-    $http,
+    $https,
     parkelsewhere
   ) {
     var service = {};
 
     service.baseRestletURL = "https://parkelsewheredb.herokuapp.com/";
 
-    service.getSightings = function getSightings( postcode, dateFrom, dateTo, thingsReference ) {
+    service.getSightings = function getSightings( postcode, dateFrom, dateTo, stickersReference ) {
       // sightings are 'events'
 
       function addParameter( starting, parameter, value) {
@@ -160,33 +160,33 @@
       if (angular.isDefined(dateTo) ) {
         parameters = addParameter( parameters, "date<", dateTo );
       }*/
-      if (angular.isDefined(thingsReference) ) {
-        parameters = addParameter( parameters, "thing", thingsReference );
+      if (angular.isDefined(stickersReference) ) {
+        parameters = addParameter( parameters, "thing", stickersReference );
       }
 
       var endpointUri = service.baseRestletURL + "incidents/?"+parameters;
 
       //console.log( "sightingsSrvc.getSightings: getting  "+endpointUri );
 
-      return($http({method:"GET",url:endpointUri}));
+      return($https({method:"GET",url:endpointUri}));
     };
 
-    service.registerSighting = function registerSighting( postcode, location, thingsReference ) {
-      var event = {
-        date: (new Date).getTime()
+    service.registerSighting = function registerSighting( postcode, location, stickersReference ) {
+      var incident = {
+        incident: (new Date).getTime()
       };
       if( angular.isDefined( postcode ) ) {
-        event.postcode = sanitisePostcode( postcode );
+        incident.postcode = sanitisePostcode( postcode );
       }
       if( angular.isDefined( location ) ) {
-        event.lat = location.lat;
-        event.lon = location.lon;
+        incident.lat = location.lat;
+        incident.lon = location.lon;
       }
-      if( angular.isDefined( thingsReference ) ) {
-        event.thing = thingsReference;
+      if( angular.isDefined( stickersReference ) ) {
+        incident.thing = stickersReference;
       }
-      //console.log( "sightingsSrvc.registerSighting registering ", event );
-      return parkelsewhere.postEvents( event );
+      //console.log( "sightingsSrvc.registerSighting registering ", incident );
+      return parkelsewhere.postIncidents( incident );
     };
 
     // standardises a postcode for data storage
