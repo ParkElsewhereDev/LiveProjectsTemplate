@@ -47,7 +47,7 @@
         requestUrl = "https://www.itis.gov/ITISWebService/jsonservice/searchForAnyMatch?jsonP=JSON_CALLBACK&srchKey=" + cleanedSearchTerms;
       }
       if( requestUrl !== "" ) {
-        return $http.jsonp( requestUrl , { jsonpCallbackParam: "JSON_CALLBACK" } )
+        return $https.jsonp( requestUrl , { jsonpCallbackParam: "JSON_CALLBACK" } )
           .then(
             function response(data, status, headers, config ) {
               var names = data.data.anyMatchList.map(function(item,index){
@@ -161,7 +161,7 @@
         parameters = addParameter( parameters, "date<", dateTo );
       }*/
       if (angular.isDefined(stickersReference) ) {
-        parameters = addParameter( parameters, "thing", stickersReference );
+        parameters = addParameter( parameters, "sticker", stickersReference );
       }
 
       var endpointUri = service.baseRestletURL + "incidents/?"+parameters;
@@ -183,7 +183,7 @@
         incident.lon = location.lon;
       }
       if( angular.isDefined( stickersReference ) ) {
-        incident.thing = stickersReference;
+        incident.sticker = stickersReference;
       }
       //console.log( "sightingsSrvc.registerSighting registering ", incident );
       return parkelsewhere.postIncidents( incident );
