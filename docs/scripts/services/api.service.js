@@ -164,7 +164,7 @@
         parameters = addParameter( parameters, "thing", thingsReference );
       }
 
-      var endpointUri = service.baseRestletURL + "events/?"+parameters;
+      var endpointUri = service.baseRestletURL + "incidents/?"+parameters;
 
       //console.log( "sightingsSrvc.getSightings: getting  "+endpointUri );
 
