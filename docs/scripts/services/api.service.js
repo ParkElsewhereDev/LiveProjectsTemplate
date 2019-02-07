@@ -7,7 +7,7 @@
   angular
     .module('app.api', [ 'restlet.sdk' ])
     .factory('stickerSrvc', stickerSrvc)
-    .factory('sightingsSrvc', sightingsSrvc)
+    .factory('incidentsSrvc', incidentsSrvc)
   ;
 
   //
@@ -20,14 +20,14 @@
     '$q',
     '$timeout',
     '$sce',
-    '$https',
+    '$http',
     'parkelsewhere'
   ];
   function stickerSrvc(
     $q,
     $timeout,
     $sce,
-    $https,
+    $http,
     parkelsewhere
   ) {
     var service = {};
@@ -47,7 +47,7 @@
         requestUrl = "https://www.itis.gov/ITISWebService/jsonservice/searchForAnyMatch?jsonP=JSON_CALLBACK&srchKey=" + cleanedSearchTerms;
       }
       if( requestUrl !== "" ) {
-        return $https.jsonp( requestUrl , { jsonpCallbackParam: "JSON_CALLBACK" } )
+        return $http.jsonp( requestUrl , { jsonpCallbackParam: "JSON_CALLBACK" } )
           .then(
             function response(data, status, headers, config ) {
               var names = data.data.anyMatchList.map(function(item,index){
@@ -75,12 +75,12 @@
 
     service.getRegisteredsticker = function getRegisteredsticker( stickerName ) {
       var endpointUri = service.baseRestletURL + "stickers/?name="+encodeURIComponent( stickerName );
-      return($https({method:"GET",url:endpointUri}));
+      return($http({method:"GET",url:endpointUri}));
     };
 
     service.getstickerFromId = function getstickerFromId( idString ) {
       var endpointUri = service.baseRestletURL + "stickers/" + idString;
-      return($https({method:"GET",url:endpointUri}));
+      return($http({method:"GET",url:endpointUri}));
     };
 
     // inserts a sticker based on name. Should not create duplicate ites
@@ -120,18 +120,18 @@
 
   //
   //
-  // sightingsSrvc
+  // incidentsSrvc
   //
   //
 
-  sightingsSrvc.$inject = [
+  incidentsSrvc.$inject = [
 /*    '$ionicPlatform', */
     '$q',
     '$timeout',
     '$https',
     'parkelsewhere'
   ];
-  function sightingsSrvc(
+  function incidentsSrvc(
     $q,
     $timeout,
     $https,
@@ -141,8 +141,8 @@
 
     service.baseRestletURL = "https://parkelsewheredb.herokuapp.com/";
 
-    service.getSightings = function getSightings( postcode, dateFrom, dateTo, stickersReference ) {
-      // sightings are 'events'
+    service.getIncidents = function getIncidents( postcode, dateFrom, dateTo, stickersReference ) {
+      // Incidents are 'events'
 
       function addParameter( starting, parameter, value) {
         return( starting+(starting.length>0?"&":"")+
@@ -166,7 +166,7 @@
 
       var endpointUri = service.baseRestletURL + "incidents/?"+parameters;
 
-      //console.log( "sightingsSrvc.getSightings: getting  "+endpointUri );
+      //console.log( "incidentsSrvc.getIncidents: getting  "+endpointUri );
 
       return($https({method:"GET",url:endpointUri}));
     };
@@ -185,7 +185,7 @@
       if( angular.isDefined( stickersReference ) ) {
         incident.sticker = stickersReference;
       }
-      //console.log( "sightingsSrvc.registerSighting registering ", incident );
+      //console.log( "incidentsSrvc.registerSighting registering ", incident );
       return parkelsewhere.postIncidents( incident );
     };
 
