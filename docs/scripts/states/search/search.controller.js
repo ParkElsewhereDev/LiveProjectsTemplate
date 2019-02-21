@@ -242,7 +242,7 @@
           var stickers = [];
           for(var i in postcodes) {
             //console.log(" queueing up for "+postcodes[i]);
-            stickers.push( incidentsSrvc.getStickers( postcodes[i] )
+            stickers.push( incidentsSrvc.getIncidents( postcodes[i] )
                             .then(
                               function gotBulkStickers(result){
                                 gotStickersForPostcode(result, fromEpoch, toEpoch );
