@@ -91,15 +91,15 @@
       //    1. postcode
       //    2. living thing reference
       //    3. date
-      var livingThing = stickerSrvc.registersticker( vm.sticker ).then( // 1.
-        function registeredstickerOk( confirmedLivingThing ) {
+      var sticker = stickerSrvc.registersticker( vm.sticker ).then( // 1.
+        function registeredstickerOk( confirmedSticker ) {
           console.log(confirmedLivingThing);
-          incidentsSrvc.registerSighting( // 2.1 -> 2.4, 3
+          incidentsSrvc.registerSticker( // 2.1 -> 2.4, 3
             vm.postcode,
             vm.location,
-            confirmedLivingThing.id
+            confirmedSticker.id
           ).then(
-            function registeredstickerOkAndPostedSightingOk(success){ // 5
+            function registeredstickerOkAndPostedStickerOk(success){ // 5
               var now = new Date();
               var dateFromEpoch = now.getTime();
               /*
@@ -107,17 +107,17 @@
               var dateTo = new Date();
               dateTo.setHours(23,59,59,9999) */
               var dateToEpoch = dateFromEpoch - ( 24*60*60 );
-              incidentsSrvc.getSightings( vm.postcode,
+              incidentsSrvc.getStickers( vm.postcode,
                                           dateFromEpoch,
                                           dateToEpoch,
                                           confirmedLivingThing.id ).then(
-                                            function getSightingsOk( payload ) {
+                                            function getStickersOk( payload ) {
                                               // @TODO
-                                              toaster.pop('success', "Sighting Logged", 'Your sighting of a <b>'+vm.sticker+'</b> was successful.',5000, 'trustedHtml', function(toaster) {
+                                              toaster.pop('success', "Sticker Logged", 'Your sticker of a <b>'+vm.sticker+'</b> was successful.',5000, 'trustedHtml', function(toaster) {
                                                 //alert("click!");
                                                 return true;
                                               } );                                            },
-                                            function getSightingsError( error ) {
+                                            function getStickersError( error ) {
                                               // @TODO
                                               toaster.pop('error', "Error: Logging Error", 'There was a problem finding similar sticker recordings; please check <ul><li>You have provided all required information</li><li>You are connected to the internet</li><li>You are not stuck in a captive portal page</li></ul>',0, 'trustedHtml', function(toaster) {
                                                 return true;
@@ -126,8 +126,8 @@
                                             }
                                           );
             },
-            function registeredstickerOkButPostedSightingFail(error){ // 4
-              toaster.pop('error', "Error: Logging Error", 'There was a problem uploading your sighting; please check <ul><li>You have provided all required information</li><li>You are connected to the internet</li><li>You are not stuck in a captive portal page</li></ul>',0, 'trustedHtml', function(toaster) {
+            function registeredstickerOkButPostedStickerFail(error){ // 4
+              toaster.pop('error', "Error: Logging Error", 'There was a problem uploading your sticker; please check <ul><li>You have provided all required information</li><li>You are connected to the internet</li><li>You are not stuck in a captive portal page</li></ul>',0, 'trustedHtml', function(toaster) {
                 //alert("click!");
                 return true;
               } );

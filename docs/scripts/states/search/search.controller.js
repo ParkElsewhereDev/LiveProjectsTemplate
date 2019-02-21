@@ -109,21 +109,21 @@
       vm.postcode = postcode;
       vm.busy = true;
 
-      getSightingsForPostcode( postcode );
+      getStickersForPostcode( postcode );
     };
 
-    function getSightingsForPostcode( postcode ) {
+    function getStickersForPostcode( postcode ) {
       var fromEpoch = vm.fromDate ? vm.fromDate.getTime() : undefined;
       var toEpoch = vm.toDate ? vm.toDate.getTime() : undefined;
-      //console.log( "getSightingsForPostcode " + postcode, fromEpoch, toEpoch );
-      incidentsSrvc.getSightings( postcode ).then(
-        function gotSightingsForPostcodeOkay( data ) {
+      //console.log( "getStickersForPostcode " + postcode, fromEpoch, toEpoch );
+      incidentsSrvc.getStickers( postcode ).then(
+        function gotStickersForPostcodeOkay( data ) {
           removeAllMarkers();
-          gotSightingsForPostcode( data, fromEpoch, toEpoch );
+          gotStickersForPostcode( data, fromEpoch, toEpoch );
         },
-        function getSightingsForPostcodeError(err) {
-          console.log("error from getsightings:", err);
-          toaster.pop('error', "Error: Data Error", 'There was a problem accessing sightings.',0, 'trustedHtml', function(toaster) {
+        function getStickersForPostcodeError(err) {
+          console.log("error from getStickers:", err);
+          toaster.pop('error', "Error: Data Error", 'There was a problem accessing stickers.',0, 'trustedHtml', function(toaster) {
             return(true);
           } );
         }
@@ -133,8 +133,8 @@
       );
     }
 
-    function gotSightingsForPostcode(result, fromEpoch, toEpoch){
-      //console.log("got sightings from postcode:", fromEpoch, toEpoch);
+    function gotStickersForPostcode(result, fromEpoch, toEpoch){
+      //console.log("got stickers from postcode:", fromEpoch, toEpoch);
       result.data
         .filter(function(item,index){
           //console.log(item);
@@ -239,21 +239,21 @@
             vm.postcode = postcodes[0];
           }
           // get data for postcodes
-          var sightings = [];
+          var stickers = [];
           for(var i in postcodes) {
             //console.log(" queueing up for "+postcodes[i]);
-            sightings.push( incidentsSrvc.getSightings( postcodes[i] )
+            stickers.push( incidentsSrvc.getStickers( postcodes[i] )
                             .then(
-                              function gotBulkSightings(result){
-                                gotSightingsForPostcode(result, fromEpoch, toEpoch );
+                              function gotBulkStickers(result){
+                                gotStickersForPostcode(result, fromEpoch, toEpoch );
                               },
-                              function gotBulkSightingsError(error){
-                                console.log("problem getting bulk sightings",error);
+                              function gotBulkStickersError(error){
+                                console.log("problem getting bulk stickers",error);
                               }
                             )
                           );
           }
-          $q.all(sightings).then(
+          $q.all(stickers).then(
             function( data ) {
               //console.log("got em all!");
             },
