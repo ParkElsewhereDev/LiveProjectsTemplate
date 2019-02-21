@@ -93,7 +93,7 @@
       //    3. date
       var sticker = stickerSrvc.registersticker( vm.sticker ).then( // 1.
         function registeredstickerOk( confirmedSticker ) {
-          console.log(confirmedLivingThing);
+          console.log(confirmedSticker);
           incidentsSrvc.registerSticker( // 2.1 -> 2.4, 3
             vm.postcode,
             vm.location,
@@ -110,7 +110,7 @@
               incidentsSrvc.getStickers( vm.postcode,
                                           dateFromEpoch,
                                           dateToEpoch,
-                                          confirmedLivingThing.id ).then(
+                                          confirmedSticker.id ).then(
                                             function getStickersOk( payload ) {
                                               // @TODO
                                               toaster.pop('success', "Sticker Logged", 'Your sticker of a <b>'+vm.sticker+'</b> was successful.',5000, 'trustedHtml', function(toaster) {
