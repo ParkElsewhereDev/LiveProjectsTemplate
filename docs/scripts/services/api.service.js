@@ -168,7 +168,7 @@
 
       //console.log( "incidentsSrvc.getIncidents: getting  "+endpointUri );
 
-      return($http({method:"JSONP",url:endpointUri}));
+      return($http({method:"GET",url:endpointUri}));
     };
 
     service.registerIncident = function registerIncident( postcode, location, stickersReference ) {
